@@ -1,7 +1,7 @@
 const express = require('express');
 // const webPush = require('web-push');
-// const bodyParser = require('body-parser');
-// const path = require('path');
+const bodyParser = require('body-parser');
+const path = require('path');
 // const { ppid } = require('process');
 const app = express();
 
@@ -9,10 +9,10 @@ app.get('/', (req, res) => {
     return res.send('Hellow world');
 })
 
-// app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
-// app.use(bodyParser.json());
-// app.use(express.static(__dirname + '/Public'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/Public'));
 
 // const publicVapidKey = 'BKk9HFpgFB6-7BtZu3IVDYQwLviYJvTnlkI0IKoBgl0lURcasoArTK5tCBJbOBIzfHiDtSU5EIX6pdFTDQEBfAs';
 // const privateVapidKey = 'RzPL98sZzBWbkrEUAn1tlFWt4NF6NrZEOkYzYFWKTeE';
