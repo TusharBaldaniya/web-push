@@ -77,7 +77,7 @@ app.use(express.static(__dirname + '/Public'));
 //     });
 // })
 app.get('/dd', (req, res) => {
-    return res.send('index')
+    return res.render('index')
 })
 app.set('port', 6000);
 const server = app.listen(app.get('port'), () => {
