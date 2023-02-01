@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 app.get('/', (req, res) => {
-    return res.send('Hellow world');
+    return res.send('Hellow world change');
 })
 
 app.set('view engine', 'ejs');
