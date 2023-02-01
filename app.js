@@ -5,10 +5,6 @@ const path = require('path');
 // const { ppid } = require('process');
 const app = express();
 
-app.get('/', (req, res) => {
-    return res.send('Hellow world change');
-})
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
@@ -76,7 +72,7 @@ app.use(express.static(__dirname + '/Public'));
 //         });
 //     });
 // })
-app.get('/dd', (req, res) => {
+app.get('/gyanmanjari', (req, res) => {
     return res.render('index')
 })
 app.set('port', 6000);
