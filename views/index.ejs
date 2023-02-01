@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Gyanmanjari vidhyapeeth</title>
-<link rel="shortcut icon" href="https://gyanmanjarividyapith.edu.in/wp-content/uploads/2018/04/gm-logo-2.png" type="image/x-icon" />
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -26,18 +26,6 @@
   border-radius: 25px;
   padding: 30px;
   border: 1px solid #ffffff40;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-}
-.image{
-  position: relative;
-  height: 150px;
-  width: 150px;
-}
-.image .profile-pic{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
   box-shadow: 0 5px 20px rgba(0,0,0,0.4);
 }
 .data{
@@ -80,6 +68,27 @@ span{
 .buttons .btn:hover{
   box-shadow: inset 0 5px 20px rgba(0,0,0,0.4);
 }
+
+/* body {background: #f6f6f6; color: #444; font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 1;} */
+.container {max-width: 1100px; padding: 0 20px; margin:0 auto;}
+.panel {margin: 100px auto 40px; max-width: 500px; text-align: center;}
+.button_outer {display: inline-block; transition: .2s; position: relative; overflow: hidden;}
+.btn_upload {position: relative;}
+.btn_upload input {position: absolute; width: 100%; left: 0; top: 0; width: 100%; height: 105%; cursor: pointer; opacity: 0;}
+.file_uploading {width: 100%; height: 10px; margin-top: 20px; background: #ccc;}
+.file_uploading .btn_upload {display: none;}
+.processing_bar {position: absolute; left: 0; top: 0; width: 0; height: 100%; border-radius: 30px; background:#83ccd3; transition: 3s;}
+.file_uploading .processing_bar {width: 100%;}
+.success_box {display: none; width: 50px; height: 50px; position: relative;}
+.success_box:before {content: ''; display: block; width: 9px; height: 18px; border-bottom: 6px solid #fff; border-right: 6px solid #fff; -webkit-transform:rotate(45deg); -moz-transform:rotate(45deg); -ms-transform:rotate(45deg); transform:rotate(45deg); position: absolute; left: -3px; top: 9px;}
+.file_uploaded .success_box {display: inline-block;}
+.file_uploaded {margin-top: 0; width: 50px; background:#83ccd3; height: 50px;}
+.uploaded_file_view {max-width: 300px; margin: 40px auto; text-align: center; position: relative; transition: .2s; opacity: 0;}
+.file_remove{width: 30px; height: 30px; border-radius: 50%; display: block; position: absolute; background: #aaa; line-height: 30px; color: #fff; font-size: 12px; cursor: pointer; right: -15px; top: -15px;}
+.file_remove:hover {background: #222; transition: .2s;}
+.uploaded_file_view img {width: 120px; border-radius: 50%; height: 120px;}
+.uploaded_file_view.show {opacity: 1;}
+.error_msg {text-align: center; color: #f00}
 </style>
 </head>
 <body>
@@ -101,29 +110,33 @@ span{
   <section class="main">
   <div class="profile-card">
     <div class="image">
-      <!--<img src="images/profile.jpg" alt="" class="profile-pic">-->
+      <div class="processing_bar"></div>
+      <div class="uploaded_file_view" id="uploaded_view" class="profile-pic">
+        <span class="file_remove">X</span>
+      </div>
     </div>
     <div class="data">
       <h2>Olivia Gomez</h2>
       <span>Developer & Designer</span>
     </div>
-    <div class="row">
-      <div class="info">
-        <h3>Following</h3>
-        <span>120</span>
-      </div>
-      <div class="info">
-        <h3>Followers</h3>
-        <span>5000</span>
-      </div>
-      <div class="info">
-        <h3>Posts</h3>
-        <span>209</span>
-      </div>
-    </div>
     <div class="buttons">
-      <a href="#" class="btn">Message</a>
-      <a href="#" class="btn">Follow Me</a>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <main class="">
+        <div class="">
+          <div class="">
+            <div class="btn button_outer">
+              <div class="btn_upload">
+                <input type="file" id="upload_file" name="">
+                Upload Image
+              </div>
+              <div class="processing_bar"></div>
+              <div class="success_box"></div>
+            </div>
+          </div>
+          <div class="error_msg"></div>
+        </div>
+      </main>
+      <a href="#" class="btn">Download</a>
     </div>
   </div>
 </section>
@@ -156,6 +169,39 @@ span{
 <footer class="w3-center w3-black w3-padding-16">
   <p>© Gyanmanjari Vidyapith – 2023. All rights reserved. Develop by <i>TECH TANTRA SOLUTIONS</i></p>
 </footer>
-
+<script>
+  var btnUpload = $("#upload_file"),
+		btnOuter = $(".button_outer");
+    
+	btnUpload.on("change", function(e){
+		var ext = btnUpload.val().split('.').pop().toLowerCase();
+		if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+			$(".error_msg").text("Not an Image...");
+		} else {
+			$(".error_msg").text("");
+			btnOuter.addClass("file_uploading");
+			setTimeout(function(){
+				btnOuter.addClass("file_uploaded");
+			},3000);
+			var uploadedFile = URL.createObjectURL(e.target.files[0]);
+			setTimeout(function(){
+				$("#uploaded_view").append('<img src="'+uploadedFile+'" />').addClass("show");
+			},3500);
+		}
+	});
+	$(".file_remove").on("click", function(e){
+		$("#uploaded_view").removeClass("show");
+		$("#uploaded_view").find("img").remove();
+		btnOuter.removeClass("file_uploading");
+		btnOuter.removeClass("file_uploaded");
+	});
+      // var link = document.createElement('a');
+      // link.href = '/example.png';
+      // link.download = 'Download.jpg';
+      // document.body.appendChild(link);
+      // link.click();
+      // document.body.removeChild(link);
+</script>
+<script src="/main.js"></script>
 </body>
 </html>
