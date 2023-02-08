@@ -121,9 +121,9 @@ span{
     <!-- Float links to the right. Hide them on small screens -->
   </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <section class="main" style="margin-top: 7%; background-image: url('/assets/img1.jpeg');">
-  <div class="profile-card" style="background: beige; opacity: 90%;">
+  <div id="pcardid" class="profile-card" style="background: beige; opacity: 90%;">
     <div class="image">
       <div class="processing_bar"></div>
       <div class="uploaded_file_view" id="uploaded_view" class="profile-pic">
@@ -135,7 +135,6 @@ span{
       <span><input type="text" id="uname" name="uname" placeholder="Enter your name"/></span><button style="font-size:14px" id="save"> Save</button>
     </div>
     <div class="buttons">
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <main class="">
         <div class="">
           <div class="">
@@ -190,6 +189,8 @@ animation-fill-mode: both;" id="home">
 <footer class="w3-center w3-black w3-padding-14">
   <p>© Gyanmanjari Vidyapith – 2023. All rights reserved. Develop by <i>TECH TANTRA SOLUTIONS</i></p>
 </footer>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script> -->
 <script>
   document.getElementById("save").addEventListener("click",()=>{
     if(document.getElementById("name").style.display =="none"){
@@ -242,6 +243,51 @@ animation-fill-mode: both;" id="home">
 		btnOuter.removeClass("file_uploading");
 		btnOuter.removeClass("file_uploaded");
 	});
+// const html = 
+// `
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8">
+//   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+//   <title>Gyanmanjari vidhyapeeth</title>
+// </head>
+// <body>
+//   <header>
+//   <img class="w3-image" src="https://gyanmanjarividyapith.edu.in/wp-content/uploads/2018/04/gm-logo-2.png" alt="Architecture">
+    
+//     <h1>Web Push Notifications Demo</h1>
+//   </header>
+
+//   <div class="buttons">
+//     <button class="trigger-push">Gyanmanjari Vidhyapeeth</button>
+//   </div>
+// </body>
+// </html>
+// `
+// var divt = document.getElementById('pcardid')
+// PrintDiv(divt)
+// function PrintDiv(div)
+// {
+//     html2canvas((div), {
+//         onrendered: function(canvas) {
+//             var myImage = canvas.toDataURL();
+//             downloadURI(myImage, "MaSimulation.png");
+//       }
+//     });
+// }
+
+// function downloadURI(uri, name) {
+//     var link = document.createElement("a");
+
+//     link.download = name;
+//     link.href = uri;
+//     document.body.appendChild(link);
+//     link.click();   
+//     //after creating link you should delete dynamic link
+//     //clearDynamicLink(link); 
+// }
       // var link = document.createElement('a');
       // link.href = '/example.png';
       // link.download = 'Download.jpg';
