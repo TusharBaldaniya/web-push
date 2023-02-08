@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 .main{
-  width: 100%;
-  height: 100vh;
+  width: -webkit-fill-available;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(images/back.jpg);
+  /* background-image: url(images/back.jpg); */
   background-position: center;
   background-size: cover;
 }
@@ -89,6 +89,27 @@ span{
 .uploaded_file_view img {width: 120px; border-radius: 50%; height: 120px;}
 .uploaded_file_view.show {opacity: 1;}
 .error_msg {text-align: center; color: #f00}
+
+/* svg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+
+  animation: rotate 1s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+} */
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>
 </head>
 <body>
@@ -96,19 +117,13 @@ span{
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="#home" class="w3-bar-item w3-button"><img src="https://gyanmanjarividyapith.edu.in/wp-content/uploads/2018/04/gm-logo-2.png" width="150" alt="Site Name" /></a>
+    <a href="#home" class="w3-bar-item w3-button"><img src="/assets/logo.png" height="60" alt="Site Name" />GYANMANJARI VIDYAPEETH</a>
     <!-- Float links to the right. Hide them on small screens -->
   </div>
 </div>
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="https://gyanmanjarividyapith.edu.in/wp-content/uploads/2022/09/gm-building-1536x520.jpg" alt="Architecture" width="1500" height="800">
-  
-</header>
-
-  <section class="main">
-  <div class="profile-card">
+  <section class="main" style="margin-top: 7%; background-image: url('/assets/img1.jpeg');">
+  <div class="profile-card" style="background: beige; opacity: 90%;">
     <div class="image">
       <div class="processing_bar"></div>
       <div class="uploaded_file_view" id="uploaded_view" class="profile-pic">
@@ -116,8 +131,8 @@ span{
       </div>
     </div>
     <div class="data">
-      <h2>Olivia Gomez</h2>
-      <span>Developer & Designer</span>
+      <h2 id="name" style="display:none">Olivia Gomez</h2>
+      <span><input type="text" id="uname" name="uname" placeholder="Enter your name"/></span><button style="font-size:14px" id="save"> Save</button>
     </div>
     <div class="buttons">
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -140,11 +155,21 @@ span{
     </div>
   </div>
 </section>
-
+<!-- Header -->
+<!-- <svg width="100" height="100" viewBox="0 0 24 24">
+  <path d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" />
+</svg> -->
+<header class="w3-display-container w3-content w3-wide" style="width:-webkit-fill-available;     animation: rotate 1s linear infinite;
+animation-play-state: paused;
+animation-delay: calc(var(--scroll) * -1s);
+animation-iteration-count: 1;
+animation-fill-mode: both;" id="home">
+  <img class="w3-image" src="/assets/img2.jpeg" alt="Architecture" height="800" style="border-radius: 50%;">
+  
+</header>
   <!-- Contact Section -->
   <div class="w3-container w3-padding-32" id="contact">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-    <p>Lets get in touch and talk about your next project.</p>
     <form action="/action_page.php" target="_blank">
       <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
@@ -156,20 +181,42 @@ span{
     </form>
   </div>
   
-<!-- Image of location/map -->
-<div class="w3-container">
-  <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
-</div>
 
 <!-- End page content -->
 </div>
 
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
+<footer class="w3-center w3-black w3-padding-14">
   <p>© Gyanmanjari Vidyapith – 2023. All rights reserved. Develop by <i>TECH TANTRA SOLUTIONS</i></p>
 </footer>
 <script>
+  document.getElementById("save").addEventListener("click",()=>{
+    if(document.getElementById("name").style.display =="none"){
+    document.getElementById("uname").style.display = "none"
+    document.getElementById("name").style.display = "block"
+    document.getElementById("save").innerHTML = "Edit"
+  }else{
+    document.getElementById("uname").style.display = "block"
+    document.getElementById("name").style.display = "none"
+    document.getElementById("save").innerHTML = "Save"
+    }
+  })
+  document.getElementById("uname").addEventListener("change",()=>{
+    console.log('fdf')
+    document.getElementById("name").innerHTML = document.getElementById("uname").value
+  })
+  window.addEventListener(
+  "scroll",
+  () => {
+    document.body.style.setProperty(
+      "--scroll",
+      window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
+    );
+  },
+  false
+);
+
   var btnUpload = $("#upload_file"),
 		btnOuter = $(".button_outer");
     
@@ -202,6 +249,6 @@ span{
       // link.click();
       // document.body.removeChild(link);
 </script>
-<script src="/main.js"></script>
+
 </body>
 </html>
