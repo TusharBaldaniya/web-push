@@ -12,6 +12,8 @@
             width: 120px;
             border-radius: 50%;
             height: 120px;
+            border: 3px gray solid;
+
         }
 
         #uploadYourImageView {
@@ -245,9 +247,15 @@
         }
 
         @media only screen and (max-width: 700px) {
+             #uploadYourImageView img {
+            width: 85px;
+            border-radius: 50%;
+            height: 85px;
+            border: 3px gray solid;
+        }
             #userName {
                 position: absolute;
-                top: 66%;
+                top: 70%;
                 left: 16%;
                 transform: translate(-50%, -50%);
             }
@@ -282,7 +290,7 @@
                 <div class="col" id="uploadYourImageView">
                 </div>
                 <div class="col" id="userName">
-                    <h2 id="userNameText"></h2>
+                    <h4 class="text-uppercase" id="userNameText"></h4>
                 </div>
             </div>
 
