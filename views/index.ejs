@@ -23165,13 +23165,16 @@
 
         }
         document.getElementById("userImageDownload").addEventListener("click", () => {
-            console.log("aaa");
+           if(document.getElementById("uname").value!="" && document.getElementById("upload_file").value !=""){
             html2canvas(document.getElementById('frame')).then(function (canvas) {
                 var img = canvas.toDataURL("image/png");
                 document.getElementById("downloadFinalHref").href = img;
                 document.getElementById("downloadFinalImage").src = img;
                 document.getElementById("downloadFinalHref").click();
             });
+        }else{
+            $(".error_msg").text("Please select image and enter your name...");
+        }
         })
         document.getElementById("save").addEventListener("click", () => {
             if (document.getElementById("name").style.display == "none") {
