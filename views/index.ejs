@@ -5,6 +5,7 @@
     <title>Gyanmanjari vidhyapeeth</title>
 
     <meta charset="UTF-8">
+<link rel="manifest" href="../manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
@@ -23159,12 +23160,42 @@
     </div>
     <!-- End page content -->
 
-
+<button onclick="addToHomeScreen()">Add to Homescreen</button>
     <!-- Footer -->
     <footer class="w3-center w3-black w3-padding-14">
         <p>© Gyanmanjari Vidyapith – 2023. All rights reserved. Develop by <i>TECH TANTRA SOLUTIONS</i></p>
     </footer>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Error registering Service Worker:', error);
+        });
+    }
+  </script>
+<script>
+  function addToHomeScreen() {
+    if ('beforeinstallprompt' in window) {
+      const installPromptEvent = window.beforeinstallprompt;
+
+      // Show the prompt
+      installPromptEvent.prompt();
+
+      // Wait for the user to respond
+      installPromptEvent.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+      });
+    }
+  }
+</script>
     <script>
         if ($(window).width() < 767) {
             $("#flexcolumnid").addClass('flex-column')
