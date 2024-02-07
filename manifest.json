@@ -1,0 +1,16 @@
+{
+  "name": "gyanmanjari",
+  "short_name": "gmv",
+  "description": "Description of your app",
+  "start_url": "/gyanmanjari",  // Adjust this according to your app's starting point
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "./Public/assets/logo.png",  // Path to your app icon
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
